@@ -27,20 +27,20 @@ B. From tarball
 
 Execution Instructions:
 -----------------------
-# Run your desired program inside of parrot, giving options to record the files accessed	
+Run your desired program inside of parrot, giving options to record the files accessed	
 1. parrot_run --name-list my.namelist --env-list my.envlist <execution-command>
 
 More details at http://ccl.cse.nd.edu/software/autobuild-doc/man/parrot_run.html
 	
-# Package up the files mentioned in the namelist	
+Package up the files mentioned in the namelist	
 2. parrot_package_create --name-list my.namelist --env-list my.envlist --package-path my.package
 
 More details at http://ccl.cse.nd.edu/software/autobuild-doc/man/parrot_package_create.html
 	
-# Now, my.package contains a complete filesystem sufficient to run the original command.	
-# It is just a plain filesystem tree, so you can edit and add/remove files as needed.	
-# To re-run it, you need a tool that can provide the modified namespace.	
-# We provide tools to do that with parrot or chroot, but docker or vms are also possible	
+Now, my.package contains a complete filesystem sufficient to run the original command.	
+It is just a plain filesystem tree, so you can edit and add/remove files as needed.	
+To re-run it, you need a tool that can provide the modified namespace.	
+We provide tools to do that with parrot or chroot, but docker or vms are also possible	
 
 3. parrot_package_run --package-path my.package <execution-command>	
    
