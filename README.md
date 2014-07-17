@@ -3,8 +3,8 @@ provenance-tools
 
 Contains all the packaging tools used so far.
 
-Parrot packaging tool
----------------------
+I. Parrot packaging tool
+------------------------
 Contact: Haiyan Meng, University of Notre Dame
 
 Installation Steps:
@@ -40,13 +40,37 @@ More details at http://ccl.cse.nd.edu/software/autobuild-doc/man/parrot_package_
 Now, my.package contains a complete filesystem sufficient to run the original command.	
 It is just a plain filesystem tree, so you can edit and add/remove files as needed.	
 To re-run it, you need a tool that can provide the modified namespace.	
-We provide tools to do that with parrot or chroot, but docker or vms are also possible	
+We provide tools to do that with parrot or chroot, but docker or vms are also possible
 
 3. parrot_package_run --package-path my.package <execution-command>	
    
    (or)
    
    chroot_package_run --package-path my.package <execution-command>
-   
+
 More details at http://ccl.cse.nd.edu/software/autobuild-doc/man/parrot_package_run.html
 More details at http://ccl.cse.nd.edu/software/autobuild-doc/man/chroot_package_run.html
+
+
+II. Provenance-To-Use
+---------------------
+Contact: Tanu Malik, Quan Pham, University of Chicago
+
+Installation Steps:
+-------------------
+1. cd $HOME
+2. git clone https://github.com/SISC2014/provenance-tools.git
+3. tar xvf provenance-tools/ptu.tar
+4. export PTU_HOME=$PWD/ptu
+5. export PATH=$PATH:$PTU_HOME
+
+Execution Instructions:
+-----------------------
+Prepend ptu before the actual execution command of the application to capture and create the package	
+1. ptu <execution-command> [-v for verbose ouput; -o for custom output location]
+
+Above step results in cde-package folder. It consists of all the captured files and the file system
+2. cd cde-package
+
+cde.log contains the execution steps of the application as a shell script
+3. ./cde.log	
