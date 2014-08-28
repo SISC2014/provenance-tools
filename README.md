@@ -18,12 +18,11 @@ A. From Source(for latest version)
 5. make install	
 6. export PATH=$HOME/cctools/bin:$PATH
 
-B. From tarball
----------------
+B. From Built code:
+-------------------
 1. cd $HOME
 2. git clone https://github.com/SISC2014/provenance-tools.git
-3. tar xvf provenance-tools/parrot.tar
-4. export PATH=$HOME/cctools/bin:$PATH
+3. export PATH=$HOME/provenance-tools/cctools/bin:$PATH
 
 Execution Instructions:
 -----------------------
@@ -57,9 +56,8 @@ Installation Steps:
 -------------------
 1. cd $HOME
 2. git clone https://github.com/SISC2014/provenance-tools.git
-3. tar xvf provenance-tools/ptu.tar
-4. export PTU_HOME=$PWD/ptu
-5. export PATH=$PATH:$PTU_HOME
+3. export PTU_HOME=$HOME/provenance-tools/ptu
+4. export PATH=$PATH:$PTU_HOME
 
 Execution Instructions:
 -----------------------
