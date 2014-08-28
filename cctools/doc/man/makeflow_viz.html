@@ -1,0 +1,70 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><title>makeflow_viz(1)</title></head><body><h1>makeflow_viz(1)</h1>
+
+<h2>NAME</h2>
+<b>makeflow_viz</b> - visualization of Makeflow workflows
+
+<h2>SYNOPSIS</h2>
+<tt><b>makeflow_viz [options] <i>&lt;dagfile&gt;</i></b></tt>
+
+<h2>DESCRIPTION</h2>
+
+<b>makeflow_viz</b> is a collection of tools to graphically display workflows. This includes DOT and PPM.
+
+<h2>OPTIONS</h2>
+<h3>Commands</h3>
+<table>
+<tr><td colspan=2> <b><tt>-D</tt>,<b><tt>--display</tt></b> <b><tt><i>&lt;opt&gt;</i></tt></b></b><tr><td><td>Display the Makefile as a Dot graph or a PPM completion graph. <opt> is one of:
+   dot      Standard Dot graph
+   file     Display the file as interpreted by Makeflow
+   ppm      Display a completion graph in PPM format
+<tr><td> <b><tt>--dot-merge-similar</tt></b> <td>Condense similar boxes
+<tr><td> <b><tt>--dot-proportional</tt></b> <td>Change the size of the boxes proportional to file size
+<tr><td> <b><tt> </tt></b> <td>The following options for ppm generation are mutually exclusive:
+<tr><td colspan=2> <b><tt>--ppm-highlight-row <i>&lt;row&gt;</i></tt></b><tr><td><td>Highlight row <row> in completion grap
+<tr><td colspan=2> <b><tt>--ppm-highlight-file <i>&lt;file&gt;</i></tt></b><tr><td><td>Highlight node that creates file <file> in completion graph
+<tr><td colspan=2> <b><tt>--ppm-highlight-executable <i>&lt;exe&gt;</i></tt></b><tr><td><td>Highlight executable <exe> in completion grap
+<tr><td> <b><tt>--ppm-show-levels</tt></b> <td>Display different levels of depth in completion graph
+<tr><td> <b><tt>-e, --export-as-dax</tt></b> <td>Export the DAG in DAX format. (Pegasus)
+<tr><td> <b><tt>-v, --version</tt></b> <td>Show version string.
+</table>
+
+<h2>EXAMPLES</h2>
+
+To produce a DOT representation of the workflow
+<pre>
+makeflow_viz -D dot Makeflow
+</pre>
+
+<h2>COPYRIGHT</h2>
+
+The Cooperative Computing Tools are Copyright (C) 2003-2004 Douglas Thain and Copyright (C) 2005-2011 The University of Notre Dame.  This software is distributed under the GNU General Public License.  See the file COPYING for details.
+
+<h2>SEE ALSO</h2>
+
+<dir>
+<li> <a href="../index.html">Cooperative Computing Tools Documentation</a>
+<li> <a href="../makeflow.html">Makeflow User Manual</a>
+<li> <a href=makeflow.html>makeflow(1)</a>
+<li> <a href=makeflow_monitor.html>makeflow_monitor(1)</a>
+<li> <a href=makeflow_analyze.html>makeflow_analyze(1)</a>
+<li> <a href=makeflow_viz.html>makeflow_viz(1)</a>
+<li> <a href=makeflow_graph_log.html>makeflow_graph_log(1)</a>
+<li> <a href=starch.html>starch(1)</a>
+</dir>
+
+<p><hr>CCTools 4.3.0 released on 07/10/2014</body></html>

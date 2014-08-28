@@ -1,0 +1,44 @@
+[indentation]
+indent_width=2
+indent_type=0
+indent_hard_tab_width=8
+detect_indent=false
+detect_indent_width=false
+indent_mode=2
+
+[project]
+name=PTU
+base_path=/home/quanpt/assi/cde/strace-4.6/
+description=
+file_patterns=
+
+[long line marker]
+long_line_behaviour=1
+long_line_column=72
+
+[files]
+current_page=5
+FILE_NAME_0=6856;C;0;16;0;1;0;/home/quanpt/assi/cde/strace-4.6/provenance.c;0;2
+FILE_NAME_1=8001;Python;0;16;0;1;0;/home/quanpt/assi/cde/scripts/db2dot.py;0;2
+FILE_NAME_2=8398;Python;0;16;0;1;0;/home/quanpt/assi/cde/scripts/prov2dot.py;0;2
+FILE_NAME_3=75071;C;0;16;0;1;0;/home/quanpt/assi/cde/strace-4.6/cde.c;0;2
+FILE_NAME_4=3508;C;0;16;0;1;0;/home/quanpt/assi/cde/strace-4.6/file.c;0;2
+FILE_NAME_5=229;C;0;16;0;1;0;/home/quanpt/assi/cde/strace-4.6/provenance.h;0;2
+
+[VTE]
+last_dir=/home/quanpt
+
+[build-menu]
+NF_00_LB=_Make
+NF_00_CM=make
+NF_00_WD=/home/quanpt/assi/cde
+EX_00_LB=_Execute
+EX_00_CM=
+EX_00_WD=
+NF_03_LB=Test
+NF_03_CM=rm -rf cde-package && valgrind --leak-check=full ../../ptu -a cde-root-Y65bDAhpeDT_Z6fa9m4LFtO sh my_1st_exp.sh
+NF_03_WD=/home/quanpt/assi/cde/mytest/bash
+PythonFT_01_LB=Test
+PythonFT_01_CM=rm -rf cde-package/gv* && ./s06.make_graph.sh
+PythonFT_01_WD=/home/quanpt/assi/cde/mytest/bash
+filetypes=Python;

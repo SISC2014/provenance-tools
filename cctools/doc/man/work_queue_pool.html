@@ -1,0 +1,136 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><title>work_queue_pool(1)</title></head><body><h1>work_queue_pool(1)</h1>
+<h2>NAME</h2>
+<b>work_queue_pool</b> - maintain a pool of Work Queue workers on a batch system.
+
+<h2>SYNOPSIS</h2>
+<tt><b>work_queue_pool -M <i>&lt;project-name&gt;</i> -T <i>&lt;batch-type&gt;</i> [options]</b></tt>
+
+<h2>DESCRIPTION</h2>
+<b>work_queue_pool</b> submits and maintains a number 
+of <a href=work_queue_worker.html>work_queue_worker(1)</a> processes on various batch systems, such as
+Condor and SGE.  All the workers managed by a <b>work_queue_pool</b> process
+will be directed to work for a specific master, or any set of masters matching
+a given project name.  <b>work_queue_pool</b> will automatically determine
+the correct number of workers to have running, based on criteria set on
+the command line.  The decision on how many workers to run is reconsidered
+once per minute.
+<p>
+By default, <b>work_queue_pool</b> will run as many workers as the
+indicated masters have tasks ready to run.  If there are multiple
+masters, then enough workers will be started to satisfy their collective needs.
+For example, if there are two masters with the same project name, each with
+10 tasks to run, then <b>work_queue_pool</b> will start a total of 20 workers.
+<p>
+If the number of needed workers increases, <b>work_queue_pool</b> will submit
+more workers to meet the desired need.  However, it will not run more than
+a fixed maximum number of workers, given by the -W option.
+<p>
+If the need for workers drops, <b>work_queue_pool</b> does not remove them immediately,
+but waits to them to exit on their own.  (This happens when the worker has been idle
+for a certain time.)  A minimum number of workers will be maintained, given
+by the -w option.
+<p>
+If given the -c option, then <b>work_queue_pool</b> will consider the capacity
+reported by each master.  The capacity is the estimated number of workers
+that the master thinks it can handle, based on the task execution and data
+transfer times currently observed at the master.  With the -c option on,
+<b>work_queue_pool</b> will consider the master's capacity to be the maximum
+number of workers to run.
+<p>
+If <b>work_queue_pool</b> receives a terminating signal, it will attempt to
+remove all running workers before exiting.
+
+<h2>OPTIONS</h2>
+
+<h3>Batch Options</h3>
+<table>
+<tr><td colspan=2> <b><tt>-M</tt>,<b><tt>--master-name</tt></b> <b><tt><i>&lt;project&gt;</i></tt></b></b><tr><td><td>Name of a preferred project. A worker can have multiple preferred projects.
+<tr><td colspan=2> <b><tt>-T</tt>,<b><tt>--batch-type</tt></b> <b><tt><i>&lt;type&gt;</i></tt></b></b><tr><td><td>Batch system type: unix, condor, sge, workqueue, xgrid. (default is unix)
+<tr><td colspan=2> <b><tt>-w</tt>,<b><tt>--min-workers</tt></b> <b><tt><i>&lt;workers&gt;</i></tt></b></b><tr><td><td> Minimum workers running.  (default=5)
+<tr><td colspan=2> <b><tt>-W</tt>,<b><tt>--max-workers</tt></b> <b><tt><i>&lt;workers&gt;</i></tt></b></b><tr><td><td> Maximum workers running.  (default=100)
+<tr><td> <b><tt>-c --capacity</tt></b> <td> Use worker capacity reported by masters.
+<tr><td colspan=2> <b><tt>-P</tt>,<b><tt>--password</tt></b> <b><tt><i>&lt;file&gt;</i></tt></b></b><tr><td><td> Password file for workers to authenticate to master.
+<tr><td colspan=2> <b><tt>-t</tt>,<b><tt>--timeout</tt></b> <b><tt><i>&lt;time&gt;</i></tt></b></b><tr><td><td>Abort after this amount of idle time.
+<tr><td colspan=2> <b><tt>-E</tt>,<b><tt>--extra-options</tt></b> <b><tt><i>&lt;options&gt;</i></tt></b></b><tr><td><td>Extra options that should be added to the worker.
+<tr><td colspan=2> <b><tt>-S</tt>,<b><tt>--scratch</tt></b> <b><tt><i>&lt;file&gt;</i></tt></b></b><tr><td><td>Scratch directory. (default is /tmp/${USER}-workers)
+<tr><td colspan=2> <b><tt>-d</tt>,<b><tt>--debug</tt></b> <b><tt><i>&lt;flag&gt;</i></tt></b></b><tr><td><td>Enable debugging for this subsystem.
+<tr><td colspan=2> <b><tt>-o</tt>,<b><tt>--debug-file</tt></b> <b><tt><i>&lt;file&gt;</i></tt></b></b><tr><td><td>Write debugging output to this file. By default, debugging is sent to stderr (":stderr"). You may specify logs be sent to stdout (":stdout"), to the system syslog (":syslog"), or to the systemd journal (":journal").
+<tr><td> <b><tt>-h, --help</tt></b> <td>Show this screen.
+</table>
+
+<h2>EXIT STATUS</h2>
+On success, returns zero. On failure, returns non-zero.
+
+<h2>EXAMPLES</h2>
+
+Suppose you have a Work Queue master with a project name of "barney".
+To maintain workers for barney, do this:
+
+<pre>
+work_queue_pool -T condor -M barney
+</pre>
+
+To maintain a maximum of 100 workers on an SGE batch system, do this:
+
+<pre>
+work_queue_pool -T sge -M barney -W 100
+</pre>
+
+To start workers according to the master's capacity, such that the
+workers exit after 5 minutes (300s) of idleness:
+
+<pre>
+work_queue_pool -T condor -M barney -c -t 300
+</pre>
+
+If you want to start workers that match any project that begins
+with barney, use a regular expression:
+
+<pre>
+work_queue_pool -T condor -M barney.\* -c -t 300
+</pre>
+
+<h2>KNOWN BUGS</h2>
+
+The capacity measurement currently assumes single-core tasks running on single-core
+workers, and behaves unexpectedly with multi-core tasks or multi-core workers.
+
+When generating a worker pool for a foreman, specify a minimum number of workers
+to run at all times.  Otherwise, the master will not assign any tasks to the foreman,
+because it (initally) has no workers.
+
+<h2>COPYRIGHT</h2>
+The Cooperative Computing Tools are Copyright (C) 2003-2004 Douglas Thain and Copyright (C) 2005-2011 The University of Notre Dame.  This software is distributed under the GNU General Public License.  See the file COPYING for details.
+
+<h2>SEE ALSO</h2>
+
+<dir>
+<li> <a href="../index.html">Cooperative Computing Tools Documentation</a>
+<li> <a href="../workqueue.html">Work Queue User Manual</a>
+<li> <a href=work_queue_worker.html>work_queue_worker(1)</a>
+<li> <a href=work_queue_status.html>work_queue_status(1)</a>
+<li> <a href=work_queue_pool.html>work_queue_pool(1)</a>
+<li> <a href=condor_submit_workers.html>condor_submit_workers(1)</a>
+<li> <a href=sge_submit_workers.html>sge_submit_workers(1)</a>
+<li> <a href=torque_submit_workers.html>torque_submit_workers(1)</a>
+<li> <a href=ec2_submit_workers.html>ec2_submit_workers(1)</a>
+<li> <a href=ec2_remove_workers.html>ec2_remove_workers(1)</a>
+</dir>
+
+<p><hr>CCTools 4.3.0 released on 07/10/2014</body></html>
+

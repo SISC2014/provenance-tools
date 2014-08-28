@@ -1,0 +1,75 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><title>makeflow_linker(1)</title></head><body><h1>makeflow_linker(1)</h1>
+
+<h2>NAME</h2>
+<b>makeflow_linker</b> - automatic dependency location for workflows
+
+<h2>SYNOPSIS</h2>
+<tt><b>makeflow_linker [options] <i>&lt;workflow_description&gt;</i></b></tt>
+
+<h2>DESCRIPTION</h2>
+<b>makeflow_linker</b> is a tool for automatically determining dependencies of workflows. It accepts a workflow description, currently Makeflow syntax is required, and recursively determines the dependencies and produces a self-contained package. <b>makeflow_linker</b> supports Python, Perl, and shared libraries. 
+
+<p>
+
+<b>makeflow_linker</b> finds dependencies by static analysis. <tt>eval</tt> and other dynamic code loading may obscure dependencies causing <b>makeflow_linker</b> to miss some critical dependencies. Therefore it is recommended to avoid these techniques when desiging a workflow.
+
+<h2>OPTIONS</h2>
+<table>
+<tr><td> <b><tt>--dry-run</tt></b> <td>Run without creating directories or copying dependencies.
+<tr><td> <b><tt>-h, --help</tt></b> <td>Show this help screen.
+<tr><td> <b><tt>-n, --use-named</tt></b> <td>Do not copy files which are part of a named dependency, e.g. standard libraries.
+<tr><td colspan=2> <b><tt>-o</tt>,<b><tt>--output</tt></b> <b><tt><i>&lt;directory&gt;</i></tt></b></b><tr><td><td>Specify output directory.
+<tr><td> <b><tt>--verbose</tt></b> <td>Output status during run.
+<tr><td> <b><tt>-v, --version</tt></b> <td>Display version information.
+</table>
+
+<h2>EXIT STATUS</h2>
+On success, returns zero. On failure (typically permission errors), returns non-zero.
+
+<h2>BUGS</h2>
+<dir>
+<li> The makeflow_linker does not check for naming collisions beyond the initial workflow inputs.
+<li> The makeflow_linker relies on regex parsing of files, so some forms of import statements may be missing.
+</dir>
+
+<h2>EXAMPLES</h2>
+
+Package a workflow:
+<pre>
+makeflow_linker -o example_mf example.mf
+</pre>
+
+Run packaged workflow:
+<pre>
+makeflow example_mf/example.mf
+</pre>
+
+<h2>COPYRIGHT</h2>
+
+The Cooperative Computing Tools are Copyright (C) 2003-2004 Douglas Thain and Copyright (C) 2005-2011 The University of Notre Dame.  This software is distributed under the GNU General Public License.  See the file COPYING for details.
+
+<h2>SEE ALSO</h2>
+
+<dir>
+<li> <a href=makeflow.html>makeflow(1)</a>
+<li> <a href=perl.html>perl(1)</a>
+<li> <a href=python.html>python(1)</a>
+<li> <a href=ldd.html>ldd(1)</a>
+</dir>
+
+<p><hr>CCTools 4.3.0 released on 07/10/2014</body></html>

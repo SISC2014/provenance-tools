@@ -1,0 +1,72 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><title>deltadb_pivot(1)</title></head><body><h1>deltadb_pivot(1)</h1>
+
+<h2>NAME</h2>
+<b>deltadb_pivot</b> - command line tool that returns deltadb data in a more easily plottable format.
+
+<h2>SYNOPSIS</h2>
+<tt><b>deltadb_pivot [arguments]</b></tt>
+
+<h2>DESCRIPTION</h2>
+
+<b>deltadb_pivot</b> is a tool which returns a column for each attribute in the arguments, where each row contains the value of that attribute for each object and each timestamp in the deltadb stream.
+
+<h2>ARGUMENTS</h2>
+<table>
+<tr><td> <b><tt> arguments</tt></b> <td> The attributes in the input that should be included as columns in the output.
+</table>
+
+<h2>EXAMPLES</h2>
+
+To show the object name for each object at each timestamp:
+
+<pre>
+% deltadb_pivot name
+</pre>
+
+To see full results using a chain of multiple deltadb tools:
+
+<pre>
+% deltadb_collect /data/catalog.history 2013-02-1@00:00:00 d7 | \\
+% deltadb_select_static  type=wq_master | \\
+% deltadb_reduce_temporal m15 workers,MAX task_running,MAX tasks_running,MAX | \\
+% deltadb_reduce_spatial name,CNT workers.MAX,SUM task_running.MAX,SUM tasks_running.MAX,SUM | \\
+% deltadb_pivot name.CNT workers.MAX.SUM task_running.MAX.SUM tasks_running.MAX.SUM
+</pre>
+
+<h2>COPYRIGHT</h2>
+
+The Cooperative Computing Tools are Copyright (C) 2003-2004 Douglas Thain and Copyright (C) 2005-2011 The University of Notre Dame.  This software is distributed under the GNU General Public License.  See the file COPYING for details.
+
+<h2>SEE ALSO</h2>
+
+<dir>
+<li> <a href="http://ccl.cse.nd.edu/software/manuals">The Cooperative Computing Tools</a>
+<li> <a href="http://ccl.cse.nd.edu/software/manuals/deltadb.html">DeltaDB User's Manual</a>
+<li> <a href="http://ccl.cse.nd.edu/research/papers/pivie-deltadb-2014.pdf">DeltaDB paper</a>
+<li> <a href=deltadb_select_collect.html>deltadb_select_collect(1)</a>
+<li> <a href=deltadb_select_static.html>deltadb_select_static(1)</a>
+<li> <a href=deltadb_select_dynamic.html>deltadb_select_dynamic(1)</a>
+<li> <a href=deltadb_select_complete.html>deltadb_select_complete(1)</a>
+<li> <a href=deltadb_project.html>deltadb_project(1)</a>
+<li> <a href=deltadb_reduce_temporal.html>deltadb_reduce_temporal(1)</a>
+<li> <a href=deltadb_reduce_spatial.html>deltadb_reduce_spatial(1)</a>
+<li> <a href=deltadb_pivot.html>deltadb_pivot(1)</a>
+</dir>
+
+<p><hr>CCTools 4.3.0 released on 07/10/2014</body></html>
+

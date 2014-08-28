@@ -1,0 +1,76 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><title>work_queue_status(1)</title></head><body><h1>work_queue_status(1)</h1>
+
+<h2>NAME</h2> 
+<b>work_queue_status</b> - display status of currently running Work Queue applications.
+
+<h2>SYNOPSIS</h2>
+<tt><b>work_queue_status [options] [master] [port]</b></tt>
+
+<h2>DESCRIPTION</h2>
+
+<b>work_queue_status</b> displays the status of currently running Work Queue applications.
+When run with no options, it queries the global catalog server to list the currently running
+Work Queue masters.  When given an address and a port, it queries a master directly to obtain
+more detailed information about tasks and workers.
+
+<dir>
+<li>Hostname and port number of the application.
+<li>Number of waiting tasks.
+<li>Number of completed tasks.
+<li>Number of connected workers.
+<li>Number of tasks currently being executed.
+<li>Timestamp of when there was last communication with the application.
+</dir>
+
+<h2>OPTIONS</h2>
+<table>
+<tr><td> <b><tt>-Q, --statistics</tt></b> <td>Show summary information about queues. (default)
+<tr><td> <b><tt>-W, --workers</tt></b> <td>Show details of all workers connected to the master.
+<tr><td> <b><tt>-T, --tasks</tt></b> <td>Show details of all tasks in the queue.
+<tr><td> <b><tt>-l, --verbose</tt></b> <td>Long output.
+<tr><td> <b><tt>-R, --resources</tt></b> <td>Show available resources for each master.
+<tr><td colspan=2> <b><tt>-C</tt>,<b><tt>--catalog</tt></b> <b><tt><i>&lt;catalog&gt;</i></tt></b></b><tr><td><td>Set catalog server to <catalog>. Format: HOSTNAME:PORT
+<tr><td colspan=2> <b><tt>-d</tt>,<b><tt>--debug</tt></b> <b><tt><i>&lt;flag&gt;</i></tt></b></b><tr><td><td>Enable debugging for the given subsystem. Try -d all as a start.
+<tr><td colspan=2> <b><tt>-t</tt>,<b><tt>--timeout</tt></b> <b><tt><i>&lt;time&gt;</i></tt></b></b><tr><td><td>RPC timeout (default=300s).
+<tr><td> <b><tt>-h, --help</tt></b> <td>Show this help message.
+</table>
+
+<h2>EXIT STATUS</h2>
+On success, returns zero.  On failure, returns non-zero.
+
+<h2>COPYRIGHT</h2>
+
+The Cooperative Computing Tools are Copyright (C) 2003-2004 Douglas Thain and Copyright (C) 2005-2011 The University of Notre Dame.  This software is distributed under the GNU General Public License.  See the file COPYING for details.
+
+<h2>SEE ALSO</h2>
+
+<dir>
+<li> <a href="../index.html">Cooperative Computing Tools Documentation</a>
+<li> <a href="../workqueue.html">Work Queue User Manual</a>
+<li> <a href=work_queue_worker.html>work_queue_worker(1)</a>
+<li> <a href=work_queue_status.html>work_queue_status(1)</a>
+<li> <a href=work_queue_pool.html>work_queue_pool(1)</a>
+<li> <a href=condor_submit_workers.html>condor_submit_workers(1)</a>
+<li> <a href=sge_submit_workers.html>sge_submit_workers(1)</a>
+<li> <a href=torque_submit_workers.html>torque_submit_workers(1)</a>
+<li> <a href=ec2_submit_workers.html>ec2_submit_workers(1)</a>
+<li> <a href=ec2_remove_workers.html>ec2_remove_workers(1)</a>
+</dir>
+
+<p><hr>CCTools 4.3.0 released on 07/10/2014</body></html>
+

@@ -1,0 +1,60 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><title>resource_monitor_visualizer(1)</title></head><body><h1>resource_monitor_visualizer(1)</h1>
+
+<h2>NAME</h2>
+<b>resource_monitor_visualizer.py</b> - create  pages and graphs of resource monitor data
+
+<h2>SYNOPSIS</h2>
+<tt><b>resource_monitor_visualizer.py data_path destination_path workflow_name</b></tt>
+
+<h2>DESCRIPTION</h2>
+
+<b>resource_monitor_visualizer</b> is a tool to visualize resource usage of the
+given workflow. The visualizer creates a series of web pages and graphs to
+explore resource usage. Histograms are created for each group and resource.
+Currently, groups are determined by command name. Additionally, if time series
+data is recorded graphs are created to show the aggregate resource usage over
+time.
+
+<h2>ARGUMENTS</h2>
+<table>
+<tr><td> <b><tt> data_path</tt></b> <td>The path to the data recorded by the resource_monitor.
+<tr><td> <b><tt> destination_path</tt></b> <td>The path in which to store the visualization.
+<tr><td> <b><tt> workflow_name</tt></b> <td>The name of the workflow being visualized.
+</table>
+
+<h2>EXAMPLES</h2>
+
+To visualize a collection of resource data:
+<pre>
+% resource_monitor.py /path/to/logs /home/guest/sites my_workflow
+</pre>
+
+<h2>BUGS</h2>
+
+<dir>
+<li> x-axis labels can overlap when using older versions of gnuplot.
+<li> Aggregate time series plots are noisy.
+<li> The layout is optimized for large displays and can become cluttered on smaller monitors.
+</dir>
+
+<h2>COPYRIGHT</h2>
+
+The Cooperative Computing Tools are Copyright (C) 2003-2004 Douglas Thain and Copyright (C) 2005-2011 The University of Notre Dame.  This software is distributed under the GNU General Public License.  See the file COPYING for details.
+
+<p><hr>CCTools 4.3.0 released on 07/10/2014</body></html>
+

@@ -1,0 +1,13 @@
+Index: strace-4.6/cde.c
+===================================================================
+--- strace-4.6/cde.c	(revision 195)
++++ strace-4.6/cde.c	(working copy)
+@@ -1042,7 +1042,7 @@
+      version of VLC media player."
+   */
+   char* filename = strcpy_from_child_or_null(tcp, tcp->u_arg[0]);
+-  if (filename == NULL)
++  if (filename == NULL || *filename == '\0')
+     return;
+ 
+   if (CDE_verbose_mode) {

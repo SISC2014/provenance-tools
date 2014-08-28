@@ -1,0 +1,63 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><title>makeflow_analyze(1)</title></head><body><h1>makeflow_analyze(1)</h1>
+
+<h2>NAME</h2>
+<b>makeflow_analyze</b> - analysis of Makeflow workflows
+
+<h2>SYNOPSIS</h2>
+<tt><b>makeflow_analyze [options] <i>&lt;dagfile&gt;</i></b></tt>
+
+<h2>DESCRIPTION</h2>
+
+<b>makeflow_analyze</b> is a collection of tools to provide insight into the structure of workflows. This includes syntax analysis and dag statistics.
+
+<h2>OPTIONS</h2>
+<h3>Commands</h3>
+<table>
+<tr><td colspan=2> <b><tt>-b</tt>,<b><tt>--bundle-dir</tt></b> <b><tt><i>&lt;directory&gt;</i></tt></b></b><tr><td><td>Create portable bundle of workflow.
+<tr><td> <b><tt>-h, --help</tt></b> <td>Show this help screen.
+<tr><td> <b><tt>-I, --show-input</tt></b> <td>Show input files.
+<tr><td> <b><tt>-k, --syntax-check</tt></b> <td>Syntax check.
+<tr><td> <b><tt>-O, --show-output</tt></b> <td>Show output files.
+<tr><td> <b><tt>-v, --version</tt></b> <td>Show version string.
+</table>
+
+<h2>EXAMPLES</h2>
+
+Analyze the syntax of a workflow:
+<pre>
+makeflow_analyze -k Makeflow
+</pre>
+
+<h2>COPYRIGHT</h2>
+
+The Cooperative Computing Tools are Copyright (C) 2003-2004 Douglas Thain and Copyright (C) 2005-2011 The University of Notre Dame.  This software is distributed under the GNU General Public License.  See the file COPYING for details.
+
+<h2>SEE ALSO</h2>
+
+<dir>
+<li> <a href="../index.html">Cooperative Computing Tools Documentation</a>
+<li> <a href="../makeflow.html">Makeflow User Manual</a>
+<li> <a href=makeflow.html>makeflow(1)</a>
+<li> <a href=makeflow_monitor.html>makeflow_monitor(1)</a>
+<li> <a href=makeflow_analyze.html>makeflow_analyze(1)</a>
+<li> <a href=makeflow_viz.html>makeflow_viz(1)</a>
+<li> <a href=makeflow_graph_log.html>makeflow_graph_log(1)</a>
+<li> <a href=starch.html>starch(1)</a>
+</dir>
+
+<p><hr>CCTools 4.3.0 released on 07/10/2014</body></html>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="pally" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin/Release/pally" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="bjm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="block.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cde.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cde.h" />
+		<Unit filename="cdenet.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cdenet.h" />
+		<Unit filename="config.h" />
+		<Unit filename="count.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="defs.h" />
+		<Unit filename="desc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="freebsd/i386/errnoent.h" />
+		<Unit filename="freebsd/i386/ioctlent.h" />
+		<Unit filename="freebsd/i386/signalent.h" />
+		<Unit filename="freebsd/i386/syscall.h" />
+		<Unit filename="freebsd/i386/syscallent.h" />
+		<Unit filename="io.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ioctl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ioctlsort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ipc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="linux/alpha/errnoent.h" />
+		<Unit filename="linux/alpha/signalent.h" />
+		<Unit filename="linux/alpha/syscallent.h" />
+		<Unit filename="linux/arm/errnoent1.h" />
+		<Unit filename="linux/arm/ioctlent1.h" />
+		<Unit filename="linux/arm/signalent1.h" />
+		<Unit filename="linux/arm/syscallent.h" />
+		<Unit filename="linux/arm/syscallent1.h" />
+		<Unit filename="linux/avr32/syscallent.h" />
+		<Unit filename="linux/bfin/syscallent.h" />
+		<Unit filename="linux/dummy.h" />
+		<Unit filename="linux/errnoent.h" />
+		<Unit filename="linux/hppa/errnoent.h" />
+		<Unit filename="linux/hppa/signalent.h" />
+		<Unit filename="linux/hppa/syscallent.h" />
+		<Unit filename="linux/i386/syscallent.h" />
+		<Unit filename="linux/ia64/signalent.h" />
+		<Unit filename="linux/ia64/syscallent.h" />
+		<Unit filename="linux/ioctlent.h" />
+		<Unit filename="linux/ioctlsort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="linux/m68k/syscallent.h" />
+		<Unit filename="linux/microblaze/syscallent.h" />
+		<Unit filename="linux/mips/errnoent.h" />
+		<Unit filename="linux/mips/signalent.h" />
+		<Unit filename="linux/mips/syscallent.h" />
+		<Unit filename="linux/powerpc/errnoent1.h" />
+		<Unit filename="linux/powerpc/ioctlent1.h" />
+		<Unit filename="linux/powerpc/signalent1.h" />
+		<Unit filename="linux/powerpc/syscallent.h" />
+		<Unit filename="linux/powerpc/syscallent1.h" />
+		<Unit filename="linux/s390/syscallent.h" />
+		<Unit filename="linux/s390x/syscallent.h" />
+		<Unit filename="linux/sh/syscallent.h" />
+		<Unit filename="linux/sh64/syscallent.h" />
+		<Unit filename="linux/signalent.h" />
+		<Unit filename="linux/sparc/dummy2.h" />
+		<Unit filename="linux/sparc/errnoent.h" />
+		<Unit filename="linux/sparc/errnoent1.h" />
+		<Unit filename="linux/sparc/ioctlent1.h" />
+		<Unit filename="linux/sparc/signalent.h" />
+		<Unit filename="linux/sparc/signalent1.h" />
+		<Unit filename="linux/sparc/syscall1.h" />
+		<Unit filename="linux/sparc/syscallent.h" />
+		<Unit filename="linux/sparc/syscallent1.h" />
+		<Unit filename="linux/sparc64/dummy2.h" />
+		<Unit filename="linux/sparc64/errnoent.h" />
+		<Unit filename="linux/sparc64/errnoent1.h" />
+		<Unit filename="linux/sparc64/errnoent2.h" />
+		<Unit filename="linux/sparc64/ioctlent1.h" />
+		<Unit filename="linux/sparc64/ioctlent2.h" />
+		<Unit filename="linux/sparc64/signalent.h" />
+		<Unit filename="linux/sparc64/signalent1.h" />
+		<Unit filename="linux/sparc64/signalent2.h" />
+		<Unit filename="linux/sparc64/syscall1.h" />
+		<Unit filename="linux/sparc64/syscallent.h" />
+		<Unit filename="linux/sparc64/syscallent1.h" />
+		<Unit filename="linux/sparc64/syscallent2.h" />
+		<Unit filename="linux/syscall.h" />
+		<Unit filename="linux/tile/syscallent.h" />
+		<Unit filename="linux/x86_64/errnoent1.h" />
+		<Unit filename="linux/x86_64/ioctlent1.h" />
+		<Unit filename="linux/x86_64/signalent1.h" />
+		<Unit filename="linux/x86_64/syscallent.h" />
+		<Unit filename="linux/x86_64/syscallent1.h" />
+		<Unit filename="lvdb.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="multi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="multi.h" />
+		<Unit filename="net.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="okapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="okapi.h" />
+		<Unit filename="printenv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="proc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="process.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="provenance.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="provenance.h" />
+		<Unit filename="quota.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="resource.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="scsi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="signal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strace.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sunos4/dummy.h" />
+		<Unit filename="sunos4/errnoent.h" />
+		<Unit filename="sunos4/ioctlent.h" />
+		<Unit filename="sunos4/signalent.h" />
+		<Unit filename="sunos4/syscall.h" />
+		<Unit filename="sunos4/syscallent.h" />
+		<Unit filename="svr4/dummy.h" />
+		<Unit filename="svr4/errnoent.h" />
+		<Unit filename="svr4/ioctlent.h" />
+		<Unit filename="svr4/signalent.h" />
+		<Unit filename="svr4/syscall.h" />
+		<Unit filename="svr4/syscallent.h" />
+		<Unit filename="syscall.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="system.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="term.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="time.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="util.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="uuid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

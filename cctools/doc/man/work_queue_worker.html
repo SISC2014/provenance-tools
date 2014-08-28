@@ -1,0 +1,131 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><title>work_queue_worker(1)</title></head><body><h1>work_queue_worker(1)</h1>
+
+<h2>NAME</h2> 
+<b>work_queue_worker</b> - worker process for executing tasks
+dispatched through Work Queue
+
+<h2>SYNOPSIS</h2>
+<tt><b>work_queue_worker [options] <i>&lt;masterhost&gt;</i> <i>&lt;port&gt;</i></b></tt>
+
+<h2>DESCRIPTION</h2>
+
+<b>work_queue_worker</b> is the worker process for executing tasks dispatched
+from a master application built using the <b>Work Queue</b> API. <b>work_queue_worker</b> 
+connects to the master application, accepts, runs, and returns tasks dispatched to it. 
+
+<p>
+
+The <b>masterhost</b> and <b>port</b> arguments specify the hostname and port number 
+of the master application for work_queue_worker to connect. These two arguments 
+become optional when the auto mode option is specified.
+
+<p>
+
+<b>work_queue_worker</b> can be run locally or deployed remotely on any of the
+grid or cloud computing environments such as SGE, Amazon EC2, Condor using
+<a href=sge_submit_workers.html>sge_submit_workers(1)</a>, <a href=ec2_submit_workers.html>ec2_submit_workers(1)</a>, 
+<a href=condor_submit_workers.html>condor_submit_workers(1)</a> respectively.
+
+<h2>OPTIONS</h2>
+<table>
+<tr><td colspan=2> <b><tt>-N</tt>,<b><tt>---M</tt></b> <b><tt><i>&lt;master-name&gt;</i></tt></b></b><tr><td><td>Set the name of the project this worker should work for.  A worker can have multiple projects.
+<tr><td colspan=2> <b><tt>-C</tt>,<b><tt>--catalog</tt></b> <b><tt><i>&lt;catalog&gt;</i></tt></b></b><tr><td><td>Set catalog server to <i>&lt;catalog&gt;</i>. Format: HOSTNAME:PORT
+<tr><td colspan=2> <b><tt>-d</tt>,<b><tt>--debug</tt></b> <b><tt><i>&lt;flag&gt;</i></tt></b></b><tr><td><td>Enable debugging for the given subsystem. Try -d all as a start.
+<tr><td colspan=2> <b><tt>-o</tt>,<b><tt>--debug-file</tt></b> <b><tt><i>&lt;file&gt;</i></tt></b></b><tr><td><td>Write debugging output to this file. By default, debugging is sent to stderr (":stderr"). You may specify logs be sent to stdout (":stdout"), to the system syslog (":syslog"), or to the systemd journal (":journal").
+<tr><td colspan=2> <b><tt>--debug-max-rotate <i>&lt;bytes&gt;</i></tt></b><tr><td><td>Set the maximum file size of the debug log.  If the log exceeds this size, it is renamed to "filename.old" and a new logfile is opened.  (default=10M. 0 disables)
+<tr><td> <b><tt>--debug-release-reset</tt></b> <td>Debug file will be closed, renamed, and a new one opened after being released from a master.
+<tr><td> <b><tt>--foreman</tt></b> <td>Enable foreman mode.
+<tr><td colspan=2> <b><tt>-f</tt>,<b><tt>--foreman-name</tt></b> <b><tt><i>&lt;name&gt;</i></tt></b></b><tr><td><td>Set the project name of this foreman to <i>&lt;project&gt;</i>. Implies --foreman.
+<tr><td colspan=2> <b><tt>--foreman-port <i>&lt;port[:highport]&gt;</i></tt></b><tr><td><td> Set the port for the foreman to listen on.  If <i>&lt;highport&gt;</i> is specified the port is chosen from between <i>&lt;port&gt;</i> and <i>&lt;highport&gt;</i>. Implies --foreman.
+<tr><td colspan=2> <b><tt>-Z</tt>,<b><tt>--foreman-port-file</tt></b> <b><tt><i>&lt;file&gt;</i></tt></b></b><tr><td><td>Select port to listen to at random and write to this file.  Implies --foreman.
+<tr><td colspan=2> <b><tt>-F</tt>,<b><tt>--fast-abort</tt></b> <b><tt><i>&lt;mult&gt;</i></tt></b></b><tr><td><td>Set the fast abort multiplier for foreman (default=disabled).
+<tr><td colspan=2> <b><tt>--specify-log <i>&lt;logfile&gt;</i></tt></b><tr><td><td>Send statistics about foreman to this file.
+<tr><td colspan=2> <b><tt>-P</tt>,<b><tt>--password</tt></b> <b><tt><i>&lt;pwfile&gt;</i></tt></b></b><tr><td><td>Password file for authenticating to the master.
+<tr><td colspan=2> <b><tt>-t</tt>,<b><tt>--timeout</tt></b> <b><tt><i>&lt;time&gt;</i></tt></b></b><tr><td><td>Abort after this amount of idle time. (default=900s)
+<tr><td colspan=2> <b><tt>-w</tt>,<b><tt>--tcp-window-size</tt></b> <b><tt><i>&lt;size&gt;</i></tt></b></b><tr><td><td>Set TCP window size.
+<tr><td colspan=2> <b><tt>-i</tt>,<b><tt>--min-backoff</tt></b> <b><tt><i>&lt;time&gt;</i></tt></b></b><tr><td><td>Set initial value for backoff interval when worker fails to connect to a master. (default=1s)
+<tr><td colspan=2> <b><tt>-b</tt>,<b><tt>--max-backoff</tt></b> <b><tt><i>&lt;time&gt;</i></tt></b></b><tr><td><td>Set maxmimum value for backoff interval when worker fails to connect to a master. (default=60s)
+<tr><td colspan=2> <b><tt>-z</tt>,<b><tt>--disk-threshold</tt></b> <b><tt><i>&lt;size&gt;</i></tt></b></b><tr><td><td>Set available disk space threshold (in MB). When exceeded worker will clean up and reconnect. (default=100MB)
+<tr><td colspan=2> <b><tt>-A</tt>,<b><tt>--arch</tt></b> <b><tt><i>&lt;arch&gt;</i></tt></b></b><tr><td><td>Set the architecture string the worker reports to its supervisor. (default=the value reported by uname)
+<tr><td colspan=2> <b><tt>-O</tt>,<b><tt>--os</tt></b> <b><tt><i>&lt;os&gt;</i></tt></b></b><tr><td><td>Set the operating system string the worker reports to its supervisor. (default=the value reported by uname)
+<tr><td colspan=2> <b><tt>-s</tt>,<b><tt>--workdir</tt></b> <b><tt><i>&lt;path&gt;</i></tt></b></b><tr><td><td>Set the location where the worker should create its working directory. (default=/tmp)
+<tr><td colspan=2> <b><tt>--bandwidth <i>&lt;mbps&gt;</i></tt></b><tr><td><td>Set the maximum bandwidth the foreman will consume in Mbps. (default=unlimited)
+<tr><td colspan=2> <b><tt>--volatility <i>&lt;chance&gt;</i></tt></b><tr><td><td>Set the percent chance a worker will decide to shut down every minute.
+<tr><td colspan=2> <b><tt>--cores <i>&lt;n&gt;</i></tt></b><tr><td><td>Set the number of cores this worker should use.  Set it to 0 to have the worker use all of the available resources. (default=1)
+<tr><td colspan=2> <b><tt>--gpus <i>&lt;n&gt;</i></tt></b><tr><td><td>Set the number of GPUs this worker should use. (default=0)
+<tr><td colspan=2> <b><tt>--memory <i>&lt;mb&gt;</i></tt></b><tr><td><td>Manually set the amount of memory (in MB) reported by this worker.
+<tr><td colspan=2> <b><tt>--disk <i>&lt;mb&gt;</i></tt></b><tr><td><td>Manually set the amount of disk space (in MB) reported by this worker.
+<tr><td> <b><tt>-v</tt></b> <td>Show version string.
+<tr><td> <b><tt>-h</tt></b> <td>Show this help message.
+</table>
+
+<h2>FOREMAN MODE</h2>
+
+<b>work_queue_worker</b> can also be run in <b>foreman</b> mode, in which it connects to a
+master as a worker while acting as a master itself.  Any tasks the foreman receives from
+its master are sent to its subordinate worker processes.
+
+<p>
+
+<b>Foreman</b> mode is enabled by either specifying a port to listen on using the <b>-f <i>&lt;port&gt;</i></b> option or by
+setting the mode directly with the <b>--foreman</b> option.  The foreman can be directed to advertise its
+presence on the <a href=catalog_server.html>catalog_server()</a> with the <b>-N <i>&lt;project name&gt;</i></b> flag, which other workers can use to
+contact the foreman.
+
+<h2>EXIT STATUS</h2>
+On success, returns zero.  On failure, returns non-zero.
+
+<h2>EXAMPLES</h2>
+
+To run <b>work_queue_worker</b> to join a specific master process running on host <tt>master.somewhere.edu</tt> port 9123:
+<pre>
+% work_queue_worker master.somewhere.edu 9123
+</pre>
+
+To run <b>work_queue_worker</b> in auto mode with debugging turned on for all subsystems and
+to accept tasks only from a master application with project name set to project_A:
+<pre>
+% work_queue_worker -a -d all -M project_A 
+</pre>
+
+To run <b>work_queue_worker</b> as a foreman working for project_A and advertising itself as foreman_A1 while listening on port 9123:
+<pre>
+% work_queue_worker --foreman -M project_A -N foreman_A1 -f 9123
+</pre>
+
+<h2>COPYRIGHT</h2>
+
+The Cooperative Computing Tools are Copyright (C) 2003-2004 Douglas Thain and Copyright (C) 2005-2011 The University of Notre Dame.  This software is distributed under the GNU General Public License.  See the file COPYING for details.
+
+<h2>SEE ALSO</h2>
+
+<dir>
+<li> <a href="../index.html">Cooperative Computing Tools Documentation</a>
+<li> <a href="../workqueue.html">Work Queue User Manual</a>
+<li> <a href=work_queue_worker.html>work_queue_worker(1)</a>
+<li> <a href=work_queue_status.html>work_queue_status(1)</a>
+<li> <a href=work_queue_pool.html>work_queue_pool(1)</a>
+<li> <a href=condor_submit_workers.html>condor_submit_workers(1)</a>
+<li> <a href=sge_submit_workers.html>sge_submit_workers(1)</a>
+<li> <a href=torque_submit_workers.html>torque_submit_workers(1)</a>
+<li> <a href=ec2_submit_workers.html>ec2_submit_workers(1)</a>
+<li> <a href=ec2_remove_workers.html>ec2_remove_workers(1)</a>
+</dir>
+
+<p><hr>CCTools 4.3.0 released on 07/10/2014</body></html>
+

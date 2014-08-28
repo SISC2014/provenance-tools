@@ -1,0 +1,99 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><title>condor_submit_workers(1)</title></head><body><h1>condor_submit_workers(1)</h1>
+<h2>NAME</h2>
+<b>condor_submit_workers</b> - submit work_queue_worker to the Condor grid.
+
+<h2>SYNOPSIS</h2>
+<pre>
+<tt><b>condor_submit_workers [options] <i>&lt;servername&gt;</i> <i>&lt;port&gt;</i> <i>&lt;num-workers&gt;</i></b></tt>
+</pre>
+
+or
+
+<pre>
+<tt><b>condor_submit_workers [options] --master-name <i>&lt;name&gt;</i> <i>&lt;num-workers&gt;</i></b></tt>
+</pre>
+
+
+<h2>DESCRIPTION</h2>
+<tt>condor_submit_workers</tt> schedules the execution of <a href=work_queue_worker.html>work_queue_worker(1)</a>
+on a grid managed by Condor through its job submission interface, condor_submit.
+The number of <b>work_queue_worker</b> scheduled and run is given by the <b>num-workers</b>
+argument.
+
+The <b>servername</b> and <b>port</b> arguments specify the hostname and port number of the
+master for the work_queue_worker to connect. Alternatively, this information can be obtained from
+the catalog server by specifying the name of the work queue using the --master-name parameter.
+
+<h2>OPTIONS</h2>
+<table>
+<tr><td colspan=2> <b><tt>-M</tt>,<b><tt>--master-name</tt></b> <b><tt><i>&lt;name&gt;</i></tt></b></b><tr><td><td>Name of the preferred master for worker.
+<tr><td colspan=2> <b><tt>-N</tt>,<b><tt>--name</tt></b> <b><tt><i>&lt;name&gt;</i></tt></b></b><tr><td><td>Same as -M (backwards compatibility).
+<tr><td colspan=2> <b><tt>-C</tt>,<b><tt>--catalog</tt></b> <b><tt><i>&lt;catalog&gt;</i></tt></b></b><tr><td><td>Set catalog server to <catalog>. <catalog> format: HOSTNAME:PORT.
+<tr><td colspan=2> <b><tt>-t</tt>,<b><tt>--timeout</tt></b> <b><tt><i>&lt;time&gt;</i></tt></b></b><tr><td><td>Abort after this amount of idle time (default=900s).
+<tr><td colspan=2> <b><tt>-d</tt>,<b><tt>--debug</tt></b> <b><tt><i>&lt;subsystem&gt;</i></tt></b></b><tr><td><td>Enable debugging on worker for this subsystem (try -d all to start).
+<tr><td colspan=2> <b><tt>-w</tt>,<b><tt>--tcp-window-size</tt></b> <b><tt><i>&lt;size&gt;</i></tt></b></b><tr><td><td>Set TCP window size
+<tr><td colspan=2> <b><tt>-i</tt>,<b><tt>--min-backoff</tt></b> <b><tt><i>&lt;time&gt;</i></tt></b></b><tr><td><td>Set initial value for backoff interval when worker fails to connect to a master. (default=1s)
+<tr><td colspan=2> <b><tt>-b</tt>,<b><tt>--max-backoff</tt></b> <b><tt><i>&lt;time&gt;</i></tt></b></b><tr><td><td>Set maxmimum value for backoff interval when worker fails to connect to a master. (default=60s)
+<tr><td colspan=2> <b><tt>-z</tt>,<b><tt>--disk-threshold</tt></b> <b><tt><i>&lt;size&gt;</i></tt></b></b><tr><td><td>Set available disk space threshold (in MB). When exceeded worker will clean up and reconnect. (default=100MB)
+<tr><td colspan=2> <b><tt>-A</tt>,<b><tt>--arch</tt></b> <b><tt><i>&lt;arch&gt;</i></tt></b></b><tr><td><td>Set architecture string for the worker to report to master instead of the value in uname.
+<tr><td colspan=2> <b><tt>-O</tt>,<b><tt>--os</tt></b> <b><tt><i>&lt;os&gt;</i></tt></b></b><tr><td><td>Set operating system string for the worker to report to master instead of the value in uname.
+<tr><td colspan=2> <b><tt>-s</tt>,<b><tt>--workdir</tt></b> <b><tt><i>&lt;path&gt;</i></tt></b></b><tr><td><td>Set the location for creating the working directory of the worker.
+<tr><td colspan=2> <b><tt>-P</tt>,<b><tt>----password</tt></b> <b><tt><i>&lt;file&gt;</i></tt></b></b><tr><td><td>Password file to authenticate workers to master.
+<tr><td colspan=2> <b><tt>--cores <i>&lt;cores&gt;</i></tt></b><tr><td><td>Set the number of cores each worker should use (0=auto). (default=1)
+<tr><td colspan=2> <b><tt>--memory <i>&lt;size&gt;</i></tt></b><tr><td><td>Manually set the amonut of memory (in MB) reported by this worker.
+<tr><td colspan=2> <b><tt>--disk <i>&lt;size&gt;</i></tt></b><tr><td><td>Manually set the amount of disk (in MB) reported by this worker.
+<tr><td> <b><tt>-h,--help</tt></b> <td>Show help message.
+</table>
+
+<h2>EXIT STATUS</h2>
+On success, returns zero. On failure, returns non-zero.
+
+<h2>EXAMPLES</h2>
+
+Submit 10 worker instances to run on Condor and connect to a specific master:
+
+<pre>
+condor_submit_workers master.somewhere.edu 9123 10
+</pre>
+
+Submit 10 work_queue_worker instances to run on Condor in auto mode with their
+preferred project name set to Project_A and abort timeout set to 3600 seconds:
+
+<pre>
+condor_submit_workers -a -t 3600 -M Project_A 10
+</pre>
+
+<h2>COPYRIGHT</h2>
+The Cooperative Computing Tools are Copyright (C) 2003-2004 Douglas Thain and Copyright (C) 2005-2011 The University of Notre Dame.  This software is distributed under the GNU General Public License.  See the file COPYING for details.
+
+<h2>SEE ALSO</h2>
+<dir>
+<li> <a href="../index.html">Cooperative Computing Tools Documentation</a>
+<li> <a href="../workqueue.html">Work Queue User Manual</a>
+<li> <a href=work_queue_worker.html>work_queue_worker(1)</a>
+<li> <a href=work_queue_status.html>work_queue_status(1)</a>
+<li> <a href=work_queue_pool.html>work_queue_pool(1)</a>
+<li> <a href=condor_submit_workers.html>condor_submit_workers(1)</a>
+<li> <a href=sge_submit_workers.html>sge_submit_workers(1)</a>
+<li> <a href=torque_submit_workers.html>torque_submit_workers(1)</a>
+<li> <a href=ec2_submit_workers.html>ec2_submit_workers(1)</a>
+<li> <a href=ec2_remove_workers.html>ec2_remove_workers(1)</a>
+</dir>
+
+<p><hr>CCTools 4.3.0 released on 07/10/2014</body></html>
+

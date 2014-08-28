@@ -1,0 +1,3 @@
+#!/bin/sh
+cd ..
+make && scp ptu npb1.cloudapp.net:~/ptu

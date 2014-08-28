@@ -1,0 +1,89 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><title>torque_submit_workers(1)</title></head><body><h1>torque_submit_workers(1)</h1>
+<h2>NAME</h2>
+<b>torque_submit_workers</b> - submit work_queue_worker to a Torque cluster.
+
+<h2>SYNOPSIS</h2>
+<tt><b>torque_submit_workers [options] <i>&lt;servername&gt;</i> <i>&lt;port&gt;</i> <i>&lt;num-workers&gt;</i></b></tt>
+
+<h2>DESCRIPTION</h2>
+<tt>torque_submit_workers</tt> schedules the execution of <a href=work_queue_worker.html>work_queue_worker(1)</a> 
+on the Torque batch system through its job submission interface, qsub.
+The number of <b>work_queue_worker</b> scheduled and run is given by the <b>num-workers</b>
+argument.
+
+The <b>servername</b> and <b>port</b> arguments specify the hostname and port number of the 
+master for the work_queue_worker to connect. These two arguments become optional when the 
+auto mode option is specified for work_queue_worker. 
+
+<h2>OPTIONS</h2>
+<table>
+<tr><td> <b><tt>-M</tt></b> <td>Name of the preferred master for worker.
+<tr><td colspan=2> <b><tt>-N <i>&lt;name&gt;</i></tt></b><tr><td><td>Preferred project name for work_queue_worker to connect.
+<tr><td colspan=2> <b><tt>-c <i>&lt;cores&gt;</i></tt></b><tr><td><td>Set the number of cores each worker should use (0=auto). (default=1) 
+<tr><td colspan=2> <b><tt>-C <i>&lt;catalog&gt;</i></tt></b><tr><td><td>Set catalog server for work_queue_worker to <catalog>. <catalog> format: HOSTNAME:PORT.
+<tr><td colspan=2> <b><tt>-t <i>&lt;seconds&gt;</i></tt></b><tr><td><td>Abort work_queue_worker after this amount of idle time (default=900s).
+<tr><td colspan=2> <b><tt>-d <i>&lt;subsystem&gt;</i></tt></b><tr><td><td>Enable debugging on worker for this subsystem (try -d all to start).
+<tr><td colspan=2> <b><tt>-w <i>&lt;size&gt;</i></tt></b><tr><td><td>Set TCP window size
+<tr><td colspan=2> <b><tt>-i <i>&lt;time&gt;</i></tt></b><tr><td><td>Set initial value for backoff interval when worker fails to connect to a master. (default=1s)
+<tr><td colspan=2> <b><tt>-b <i>&lt;time&gt;</i></tt></b><tr><td><td>Set maxmimum value for backoff interval when worker fails to connect to a master. (default=60s)
+<tr><td colspan=2> <b><tt>-z <i>&lt;size&gt;</i></tt></b><tr><td><td>Set available disk space threshold (in MB). When exceeded worker will clean up and reconnect. (default=100MB)
+<tr><td colspan=2> <b><tt>-A <i>&lt;arch&gt;</i></tt></b><tr><td><td>Set architecture string for the worker to report to master instead of the value in uname.
+<tr><td colspan=2> <b><tt>-O <i>&lt;os&gt;</i></tt></b><tr><td><td>Set operating system string for the worker to report to master instead of the value in uname. 
+<tr><td colspan=2> <b><tt>-s <i>&lt;path&gt;</i></tt></b><tr><td><td>Set the location for creating the working directory of the worker.
+<tr><td colspan=2> <b><tt>-j <i>&lt;&gt;</i></tt></b><tr><td><td>Use job array to submit workers.
+<tr><td colspan=2> <b><tt>-p <i>&lt;parameters&gt;</i></tt></b><tr><td><td>Torque qsub parameters.
+<tr><td> <b><tt>-h</tt></b> <td>Show help message.
+</table>
+
+<h2>EXIT STATUS</h2>
+On success, returns zero. On failure, returns non-zero.
+
+<h2>EXAMPLES</h2>
+
+Submit 10 worker instances to run on Torque and connect to a specific master:
+
+<pre>
+torque_submit_workers master.somewhere.edu 9123 10
+</pre>
+
+Submit 10 work_queue_worker instances to run on Torque in auto mode with their
+preferred project name set to Project_A and abort timeout set to 3600 seconds:
+
+<pre>
+torque_submit_workers -a -t 3600 -M Project_A 10
+</pre>
+
+<h2>COPYRIGHT</h2>
+The Cooperative Computing Tools are Copyright (C) 2003-2004 Douglas Thain and Copyright (C) 2005-2011 The University of Notre Dame.  This software is distributed under the GNU General Public License.  See the file COPYING for details.
+
+<h2>SEE ALSO</h2>
+<dir>
+<li> <a href="../index.html">Cooperative Computing Tools Documentation</a>
+<li> <a href="../workqueue.html">Work Queue User Manual</a>
+<li> <a href=work_queue_worker.html>work_queue_worker(1)</a>
+<li> <a href=work_queue_status.html>work_queue_status(1)</a>
+<li> <a href=work_queue_pool.html>work_queue_pool(1)</a>
+<li> <a href=condor_submit_workers.html>condor_submit_workers(1)</a>
+<li> <a href=sge_submit_workers.html>sge_submit_workers(1)</a>
+<li> <a href=torque_submit_workers.html>torque_submit_workers(1)</a>
+<li> <a href=ec2_submit_workers.html>ec2_submit_workers(1)</a>
+<li> <a href=ec2_remove_workers.html>ec2_remove_workers(1)</a>
+</dir>
+
+<p><hr>CCTools 4.3.0 released on 07/10/2014</body></html>
+

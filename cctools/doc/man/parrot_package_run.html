@@ -1,0 +1,104 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><title>parrot_package_run(1)</title></head><body><h1>parrot_package_run(1)</h1>
+<h2>NAME</h2>
+<b>parrot_package_run</b> - repeat a program within the package with the help of <tt>parrot_run</tt>
+
+<h2>SYNOPSIS</h2>
+<tt><b>parrot_package_run --package-path your-package-path [command]</b></tt>
+
+<h2>DESCRIPTION</h2>
+If <tt>parrot_run</tt> is used to repeat one experiment, one mountlist must be created so that the file access request of your program can be redirected into the package. <tt>parrot_package_run</tt> is used to create the mountlist and repeat your program within the package with the help of <tt>parrot_run</tt> and <b>mountlist</b>. If no command is given, a /bin/sh shell will be returned.
+
+<h2>OPTIONS</h2>
+<table>
+<tr><td> <b><tt>-p, --package-path</tt></b> <td>The path of the package.
+<tr><td> <b><tt>-h, --help</tt></b> <td>Show this help message.
+</table>
+
+<h2>EXIT STATUS</h2>
+On success, returns zero. On failure, returns non-zero.
+
+<h2>EXAMPLES</h2>
+To repeat one program within one package <b>/tmp/package</b> in a <b>bash</b> shell:
+<pre>
+% parrot_package_run --package-path /tmp/package /bin/bash
+</pre>
+After the execution of this command, one shell will be returned, where you can repeat your original program. After everything is done, exit <tt>parrot_package_run</tt>:
+<pre>
+% exit
+</pre>
+You can also directly set your command as the arguments of <tt>parrot_package_run</tt>. In this case, <tt>parrot_package_run</tt> will exit automatically after the command is finished, and you do not need to use <tt>exit</tt> to exit. However, your command must belong to the original command set executed inside <tt>parrot_run</tt> and preserved by <tt>parrot_package_create</tt>.
+<pre>
+% parrot_package_run --package-path /tmp/package ls -al
+</pre>
+
+Here is a short instruction about how to make use of <tt>parrot_run</tt>, <tt>parrot_package_create</tt> and <tt>parrot_package_run</tt>
+to generate one package for your experiment and repeat your experiment within your package.
+<p>
+Step 1: Run your program under <tt>parrot_run</tt> and using <b>--name-list</b> and <b>--env-list</b> parameters to
+record the filename list and environment variables.
+<pre>
+% parrot_run --name-list namelist --env-list envlist /bin/bash
+</pre>
+After the execution of this command, you can run your program inside <tt>parrot_run</tt>. At the end of step 1, one file named <b>namelist</b> containing all the accessed file names and one file named <b>envlist</b> containing environment variables will be generated.
+After everything is done, exit <tt>parrot_run</tt>:
+<pre>
+% exit
+</pre>
+<p>
+Step 2: Using <tt>parrot_package_create</tt> to generate a package.
+<pre>
+% parrot_package_create --name-list namelist --env-path envlist --package-path /tmp/package
+</pre>
+At the end of step 2, one package with the path of <b>/tmp/package</b> will be generated.
+<p>
+Step 3: Repeat your program within your package.
+<pre>
+% parrot_package_run --package-path /tmp/package /bin/bash
+</pre>
+After the execution of this command, one shell will be returned, where you can repeat your original program. After everything is done, exit <tt>parrot_package_run</tt>:
+<pre>
+% exit
+</pre>
+
+<h2>COPYRIGHT</h2>
+
+The Cooperative Computing Tools are Copyright (C) 2003-2004 Douglas Thain and Copyright (C) 2005-2011 The University of Notre Dame.  This software is distributed under the GNU General Public License.  See the file COPYING for details.
+
+<h2>SEE ALSO</h2>
+
+<dir>
+<li> <a href="../index.html">Cooperative Computing Tools Documentation</a>
+<li> <a href="../parrot.html">Parrot User Manual</a>
+<li> <a href=parrot_run.html>parrot_run(1)</a>
+<li> <a href=parrot_run_hdfs.html>parrot_run_hdfs(1)</a>
+<li> <a href=parrot_cp.html>parrot_cp(1)</a>
+<li> <a href=parrot_getacl.html>parrot_getacl(1)</a>
+<li> <a href=parrot_setacl.html>parrot_setacl(1)</a>
+<li> <a href=parrot_mkalloc.html>parrot_mkalloc(1)</a>
+<li> <a href=parrot_lsalloc.html>parrot_lsalloc(1)</a>
+<li> <a href=parrot_locate.html>parrot_locate(1)</a>
+<li> <a href=parrot_timeout.html>parrot_timeout(1)</a>
+<li> <a href=parrot_whoami.html>parrot_whoami(1)</a>
+<li> <a href=parrot_md5.html>parrot_md5(1)</a>
+<li> <a href=parrot_package_create.html>parrot_package_create(1)</a>
+<li> <a href=parrot_package_run.html>parrot_package_run(1)</a>
+<li> <a href=chroot_package_run.html>chroot_package_run(1)</a>
+</dir>
+
+<p><hr>CCTools 4.3.0 released on 07/10/2014</body></html>
+

@@ -1,0 +1,100 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html><head><title>parrot_package_create(1)</title></head><body><h1>parrot_package_create(1)</h1>
+<h2>NAME</h2>
+<b>parrot_package_create</b> - generate a package based on the accessed files and the preserved environment variables
+
+<h2>SYNOPSIS</h2>
+<tt><b>parrot_package_create [options]</b></tt>
+
+<h2>DESCRIPTION</h2>
+After recording the accessed files and environment variables of one program with the help of the <tt>--name-list</tt> parameter and the <tt>--env-list</tt> of <tt>parrot_run</tt>, <tt>parrot_package_create</tt> can generate a package containing all the accessed files.
+
+<h2>OPTIONS</h2>
+<table>
+<tr><td colspan=2> <b><tt>-e</tt>,<b><tt>--env-list</tt></b> <b><tt><i>&lt;path&gt;</i></tt></b></b><tr><td><td>The path of the environment variables.
+<tr><td colspan=2> <b><tt>-n</tt>,<b><tt>--name-list</tt></b> <b><tt><i>&lt;path&gt;</i></tt></b></b><tr><td><td>The path of the namelist list.
+<tr><td colspan=2> <b><tt>-p</tt>,<b><tt>--package-path</tt></b> <b><tt><i>&lt;path&gt;</i></tt></b></b><tr><td><td>The path of the package.
+<tr><td colspan=2> <b><tt>-d</tt>,<b><tt>--debug</tt></b> <b><tt><i>&lt;flag&gt;</i></tt></b></b><tr><td><td>Enable debugging for this sub-system.
+<tr><td colspan=2> <b><tt>-o</tt>,<b><tt>--debug-file</tt></b> <b><tt><i>&lt;file&gt;</i></tt></b></b><tr><td><td>Write debugging output to this file. By default, debugging is sent to stderr (":stderr"). You may specify logs be sent to stdout (":stdout"), to the system syslog (":syslog"), or to the systemd journal (":journal").
+<tr><td> <b><tt>-h, --help</tt></b> <td>Show the help info.
+</table>
+
+<h2>EXIT STATUS</h2>
+On success, returns zero. On failure, returns non-zero.
+
+<h2>EXAMPLES</h2>
+To generate the package corresponding to <b>namelist</b> and <b>envlist</b>:
+<pre>
+% parrot_package_create --name-list namelist --env-list envlist --package-path /tmp/package
+</pre>
+After executing this command, one package with the path of <b>/tmp/package</b> will be generated.
+<p>
+
+Here is a short instruction about how to make use of <tt>parrot_run</tt>, <tt>parrot_package_create</tt> and <tt>parrot_package_run</tt>
+to generate one package for your experiment and repeat your experiment within your package.
+<p>
+Step 1: Run your program under <tt>parrot_run</tt> and using <b>--name-list</b> and <b>--env-list</b> parameters to
+record the filename list and environment variables.
+<pre>
+% parrot_run --name-list namelist --env-list envlist /bin/bash
+</pre>
+After the execution of this command, you can run your program inside <tt>parrot_run</tt>. At the end of step 1, one file named <b>namelist</b> containing all the accessed file names and one file named <b>envlist</b> containing environment variables will be generated.
+After everything is done, exit <tt>parrot_run</tt>:
+<pre>
+% exit
+</pre>
+<p>
+Step 2: Using <tt>parrot_package_create</tt> to generate a package.
+<pre>
+% parrot_package_create --name-list namelist --env-path envlist --package-path /tmp/package
+</pre>
+At the end of step 2, one package with the path of <b>/tmp/package</b> will be generated.
+<p>
+Step 3: Repeat your program within your package.
+<pre>
+% parrot_package_run --package-path /tmp/package --shell-type bash ...
+</pre>
+After the execution of this command, one shell will be returned, where you can repeat your original program (Please replace <b>--shell-type</b> parameter with the shell type you actually used). After everything is done, exit <tt>parrot_package_run</tt>:
+<pre>
+% exit
+</pre>
+
+<h2>COPYRIGHT</h2>
+
+The Cooperative Computing Tools are Copyright (C) 2003-2004 Douglas Thain and Copyright (C) 2005-2011 The University of Notre Dame.  This software is distributed under the GNU General Public License.  See the file COPYING for details.
+
+<h2>SEE ALSO</h2>
+<dir>
+<li> <a href="../index.html">Cooperative Computing Tools Documentation</a>
+<li> <a href="../parrot.html">Parrot User Manual</a>
+<li> <a href=parrot_run.html>parrot_run(1)</a>
+<li> <a href=parrot_run_hdfs.html>parrot_run_hdfs(1)</a>
+<li> <a href=parrot_cp.html>parrot_cp(1)</a>
+<li> <a href=parrot_getacl.html>parrot_getacl(1)</a>
+<li> <a href=parrot_setacl.html>parrot_setacl(1)</a>
+<li> <a href=parrot_mkalloc.html>parrot_mkalloc(1)</a>
+<li> <a href=parrot_lsalloc.html>parrot_lsalloc(1)</a>
+<li> <a href=parrot_locate.html>parrot_locate(1)</a>
+<li> <a href=parrot_timeout.html>parrot_timeout(1)</a>
+<li> <a href=parrot_whoami.html>parrot_whoami(1)</a>
+<li> <a href=parrot_md5.html>parrot_md5(1)</a>
+<li> <a href=parrot_package_create.html>parrot_package_create(1)</a>
+<li> <a href=parrot_package_run.html>parrot_package_run(1)</a>
+<li> <a href=chroot_package_run.html>chroot_package_run(1)</a>
+</dir>
+<p><hr>CCTools 4.3.0 released on 07/10/2014</body></html>
+
