@@ -69,3 +69,5 @@ cd cde-package
 
 #cde.log contains the execution steps of the application as a shell script
 ./cde.log	
+
+NOTE: Change the permissions of cde.log if not done. chmod +x cde.log
