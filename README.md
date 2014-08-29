@@ -61,13 +61,13 @@ Installation Steps:
 
 Execution Instructions:
 -----------------------
-#Prepend ptu before the actual execution command of the application to capture and create the package	
+#In capture/audit phase, prepend ptu before the actual execution command of the application to capture and create the package	
 ptu <execution-command> [-v for verbose ouput; -o for custom output location]
 
 #Above step results in cde-package folder. It consists of all the captured files and the file system
 cd cde-package
 
-#cde.log contains the execution steps of the application as a shell script
+#For re-execution, cde.log contains the execution steps of the application as a shell script
 ./cde.log	
 
 NOTE: Change the permissions of cde.log if not done. chmod +x cde.log
